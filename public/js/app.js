@@ -10,12 +10,16 @@ socket.on('message', function (message) {
 });
 //
 // // Handles submitting of new message
-// var $form = jQuery('#message-form');
-//
-// $form.on('submit', function (event) {
-//   event.preventDefault();
-//
-//   socket.emit('message', {
-//     text: $form.find('input[name=message]').val()
-//   });
-// });
+var $form = jQuery('#message-form');
+
+$form.on('submit', function (event) {
+  event.preventDefault();
+
+  var $message =  $form.find('input[name=message]');
+
+  socket.emit('message', {
+    text: $message.val()
+  });
+
+  $message.val('');
+});
